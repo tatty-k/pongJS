@@ -1,20 +1,47 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext("2d");
 
-ctx.beginPath();
-ctx.rect(20,200,25,100);
-ctx.fillStyle = "white";
-ctx.fill();
-ctx.closePath();
 
-ctx.beginPath();
-ctx.rect(655,200,25,100);
-ctx.fillStyle = "white";
-ctx.fill();
-ctx.closePath();
+let x = canvas.width/2;
+let y = canvas.height/2;
+let dx = 1;
+let dy = -1;
 
-ctx.beginPath();
-ctx.rect(350,250,25,25);
-ctx.fillStyle = "white";
-ctx.fill();
-ctx.closePath();
+function init(){
+    //ball
+    ctx.beginPath();
+    ctx.rect(x,y,25,25);
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.closePath();
+
+    //left paddle
+    ctx.beginPath();
+    ctx.rect(20,200,25,100);
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.closePath();
+
+    //right paddle
+    ctx.beginPath();
+    ctx.rect(655,200,25,100);
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.closePath();
+}
+
+function play(){
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        init();
+        if(y + dy > canvas.height || y + dy < 0){
+            dy = -dy
+        }
+        x += dx;
+        y += dy;
+    
+}
+setInterval(play, 10);
+
+
+
+
