@@ -33,8 +33,15 @@ function init(){
 function play(){
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         init();
+
         if(y + dy > canvas.height || y + dy < 0){
             dy = -dy
+        }
+        if(x + dx > canvas.width || x + dx < 0){
+            x = canvas.width/2;
+            y = canvas.height/2;
+            dx *= -1
+            dy *= -1
         }
         x += dx;
         y += dy;
