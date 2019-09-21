@@ -53,14 +53,15 @@ function init(){
     //left paddle
     ctx.beginPath();
     // ctx.rect(20,200,25,100);
-    ctx.rect( 20, 200,25,100);
+    ctx.rect( 0, 200,25,100);
     ctx.fillStyle = "white";
     ctx.fill();
     ctx.closePath();
 
     //right paddle
     ctx.beginPath();
-    ctx.rect(655, rpaddleY , rpaddleWidth , rpaddleHeight);
+    // ctx.rect(655, rpaddleY , rpaddleWidth , rpaddleHeight);
+    ctx.rect(canvas.width - rpaddleWidth , rpaddleY , rpaddleWidth , rpaddleHeight);
     ctx.fillStyle = "white";
     ctx.fill();
     ctx.closePath();
@@ -73,12 +74,19 @@ function play(){
         if(y + dy > canvas.height || y + dy < 0){
             dy = -dy
         }
+
         if(x + dx > canvas.width || x + dx < 0){
             x = canvas.width/2;
             y = canvas.height/2;
             dx *= -1
             dy *= -1
         }
+        if(x + dx > canvas.width - rpaddleWidth){
+            if(y > rpaddleY && y < rpaddleY + rpaddleHeight){
+                dx *= -1
+            }
+        } 
+
         if(upPressed){
             rpaddleY -= 7;
             if(rpaddleY < 0){
